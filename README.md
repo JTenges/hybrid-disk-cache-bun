@@ -1,11 +1,9 @@
-[![Coverage Status](https://coveralls.io/repos/github/next-boost/hybrid-disk-cache/badge.svg?branch=master)](https://coveralls.io/github/next-boost/hybrid-disk-cache?branch=master) [![Maintainability](https://api.codeclimate.com/v1/badges/270469eb02421e5c7547/maintainability)](https://codeclimate.com/github/next-boost/hybrid-disk-cache/maintainability)
-
-# hybrid-disk-cache
+# hybrid-disk-cache-bun
 
 A hybrid disk cache library that utilized both the solid SQLite3 database and the file system.
 
 ```bash
-yarn add @next-boost/hybrid-disk-cache
+bun add hybrid-disk-cache-bun
 ```
 
 When the value is larger than 10 kilobytes, it will be written to the file system, otherwise saved in SQLite3 database.
@@ -22,7 +20,7 @@ Also, here are some bonus:
 - Used in production with 300K keys
 - SQLite3's indices will always be used when searching for a key. (which is FAST)
 
-This hybrid idea is inspired by [`python-diskcache`](https://github.com/grantjenks/python-diskcache). We used it in our Python production stack, and it works just as great as what we'd expected.
+A fork of [hybrid-disk-cache](https://github.com/next-boost/hybrid-disk-cache) using bun's sqlite api.
 
 ## APIs
 
@@ -61,23 +59,12 @@ if (cache.has(key) === 'hit') {
 cache.purge()
 ```
 
-Check [`index.test.ts`](https://github.com/next-boost/hybrid-disk-cache/blob/master/test/index.test.ts) for examples.
+Check [`index.test.ts`](https://github.com/JTenges/hybrid-disk-cache-bun/blob/master/test/index.test.ts) for examples.
 
 ## Benchmarks
 
-With a series of 10B ~ 500KB data writing and reading, here are the results on a Samsung 860 EVO SATA SSD:
-
-Here is the [benchmark source code](https://github.com/next-boost/hybrid-disk-cache/blob/master/src/bench.ts).
-
-```
-> cache located at: /tmp/hdc
-> generating bench data from 10B to 500000B
-> starting 3000 x 15 writes
-  done: 69.34 μs/record.
-> starting 3000 x 15 reads
-  done: 26.65 μs/record.
-```
+TODO
 
 ## License
 
-MIT. Copyright 2020, Rakuraku Jyo.
+MIT. Copyright 2023, Joji Tenges.

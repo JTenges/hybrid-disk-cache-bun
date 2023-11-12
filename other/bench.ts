@@ -1,4 +1,4 @@
-import Cache from ".";
+import Cache from "../src";
 
 function log(start: [number, number], count: number): void {
   const [secs, ns] = process.hrtime(start);
@@ -52,10 +52,8 @@ function benchRead(cache: Cache, batch: number, keys: string[]) {
   log(start, count);
 }
 
-if (require.main === module) {
-  const cache = new Cache();
-  console.log("> cache located at: %s", cache.path);
-  const batch = 3000;
-  const keys = benchWrite(cache, batch, 5);
-  benchRead(cache, batch, keys);
-}
+const cache = new Cache();
+console.log("> cache located at: %s", cache.path);
+const batch = 3000;
+const keys = benchWrite(cache, batch, 5);
+benchRead(cache, batch, keys);

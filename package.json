@@ -4,10 +4,11 @@
   "description": "A hybrid disk cache utilize both the database and the file system.",
   "main": "src/index.ts",
   "scripts": {
-    "lint": "eslint src/*.ts test/*.ts",
-    "format": "bunx prettier --check src/*.ts test/*.ts",
-    "format:write": "bunx prettier --write src/*.ts test/*.ts",
-    "test-cov": "bun test --coverage"
+    "lint": "eslint src/*.ts test/*.ts other/*.ts",
+    "format": "bunx prettier --check src/*.ts test/*.ts other/*.ts",
+    "format:write": "bunx prettier --write src/*.ts test/*.ts other/*.ts",
+    "test-cov": "bun test --coverage",
+    "bench": "bun other/bench.ts"
   },
   "files": [
     "dist",
