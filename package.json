@@ -1,68 +1,41 @@
 {
-  "name": "@next-boost/hybrid-disk-cache",
-  "version": "0.3.0",
+  "name": "hybrid-disk-cache-bun",
+  "version": "0.4.0",
   "description": "A hybrid disk cache utilize both the database and the file system.",
-  "main": "dist/index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "build": "tsc",
-    "prepublishOnly": "rm -rf dist && yarn build",
-    "lint": "eslint src/*.ts test/*.ts",
-    "test": "NODE_ENV=test mocha --require ts-node/register test/**/*.test.ts",
-    "test-cov": "NODE_ENV=test nyc mocha test/*.test.ts"
+    "lint": "eslint src/*.ts test/*.ts other/*.ts",
+    "format": "bunx prettier --check src/*.ts test/*.ts other/*.ts",
+    "format:write": "bunx prettier --write src/*.ts test/*.ts other/*.ts",
+    "test-cov": "bun test --coverage",
+    "bench": "bun other/bench.ts"
   },
   "files": [
     "dist",
     "README.md"
   ],
   "author": {
-    "name": "Rakuraku Jyo",
-    "email": "jyo.rakuraku@gmail.com"
+    "name": "JTenges",
+    "email": "jojitenges@hotmail.com"
   },
-  "homepage": "https://github.com/next-boost/hybrid-disk-cache",
+  "homepage": "https://github.com/JTenges/hybrid-disk-cache-bun",
   "repository": {
     "type": "git",
-    "url": "https://github.com/next-boost//hybrid-disk-cache.git"
+    "url": "https://github.com/JTenges/hybrid-disk-cache-bun.git"
   },
   "license": "MIT",
   "dependencies": {
-    "better-sqlite3": "^7.1.1",
     "fs-extra": "^10.0.0"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.4.0",
-    "@types/chai": "^4.2.12",
     "@types/fs-extra": "^9.0.1",
-    "@types/mocha": "^9.0.0",
-    "@types/node": "^16.7.10",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",
-    "chai": "^4.2.0",
+    "bun-types": "^1.0.11",
     "eslint": "^7.9.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "mocha": "^9.1.1",
-    "nyc": "^15.1.0",
-    "prettier": "^2.1.2",
-    "ts-node": "^10.2.1",
-    "typescript": "^4.0.3"
-  },
-  "nyc": {
-    "include": [
-      "src/**/*.ts"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ],
-    "reporter": [
-      "text",
-      "text-summary",
-      "lcovonly",
-      "html"
-    ],
-    "sourceMap": true
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.0.3",
+    "typescript": "^4.4.4,<4.5.0"
   },
   "keywords": [
     "disk-cache",
@@ -73,5 +46,6 @@
   ],
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "packageManager": "bun@1.0.11"
 }

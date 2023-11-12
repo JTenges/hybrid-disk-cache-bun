@@ -21,17 +21,18 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+    - uses: oven-sh/setup-bun@v1
+      with:
+          version: 1.0.11
 
-    - name: Install npm dependencies
-      run: yarn
+    - name: Install dependencies
+      run: bun install
+    
+    - name: Run formatting
+      run: bun format
 
     - name: Run lint
-      run: yarn lint
+      run: bun lint
 
     - name: Run tests
-      run: yarn test-cov
-
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+      run: bun test-cov
