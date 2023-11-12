@@ -1,11 +1,9 @@
 {
-  "name": "@next-boost/hybrid-disk-cache-bun",
+  "name": "hybrid-disk-cache-bun",
   "version": "0.4.0",
   "description": "A hybrid disk cache utilize both the database and the file system.",
   "main": "src/index.ts",
   "scripts": {
-    "build": "tsc",
-    "prepublishOnly": "rm -rf dist && bun build",
     "lint": "eslint src/*.ts test/*.ts",
     "format": "bunx prettier --check src/*.ts test/*.ts",
     "format:write": "bunx prettier --write src/*.ts test/*.ts",
@@ -16,13 +14,13 @@
     "README.md"
   ],
   "author": {
-    "name": "Rakuraku Jyo",
-    "email": "jyo.rakuraku@gmail.com"
+    "name": "JTenges",
+    "email": "jojitenges@hotmail.com"
   },
-  "homepage": "https://github.com/next-boost/hybrid-disk-cache",
+  "homepage": "https://github.com/JTenges/hybrid-disk-cache-bun",
   "repository": {
     "type": "git",
-    "url": "https://github.com/next-boost//hybrid-disk-cache.git"
+    "url": "https://github.com/JTenges/hybrid-disk-cache-bun.git"
   },
   "license": "MIT",
   "dependencies": {
@@ -35,11 +33,7 @@
     "bun-types": "^1.0.11",
     "eslint": "^7.9.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "mocha": "^9.1.1",
-    "nyc": "^15.1.0",
     "prettier": "^3.0.3",
-    "ts-node": "^10.2.1",
     "typescript": "^4.4.4,<4.5.0"
   },
   "keywords": [
@@ -51,5 +45,6 @@
   ],
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "packageManager": "bun@1.0.11"
 }
