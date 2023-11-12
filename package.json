@@ -2,11 +2,13 @@
   "name": "@next-boost/hybrid-disk-cache-bun",
   "version": "0.4.0",
   "description": "A hybrid disk cache utilize both the database and the file system.",
-  "main": "dist/index.js",
+  "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "rm -rf dist && bun build",
     "lint": "eslint src/*.ts test/*.ts",
+    "format": "bunx prettier --check src/*.ts test/*.ts",
+    "format:write": "bunx prettier --write src/*.ts test/*.ts",
     "test-cov": "bun test --coverage"
   },
   "files": [
@@ -36,7 +38,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "mocha": "^9.1.1",
     "nyc": "^15.1.0",
-    "prettier": "^2.1.2",
+    "prettier": "^3.0.3",
     "ts-node": "^10.2.1",
     "typescript": "^4.0.3"
   },

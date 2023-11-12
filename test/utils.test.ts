@@ -1,34 +1,34 @@
-import { describe, it, expect } from 'bun:test'
-import fs from 'fs-extra'
-import { join as pathJoin } from 'path'
-import { purgeEmptyPath } from '../src/utils'
+import { describe, it, expect } from "bun:test";
+import fs from "fs-extra";
+import { join as pathJoin } from "path";
+import { purgeEmptyPath } from "../src/utils";
 
-describe('utils', () => {
-  it('remove empty directories', async () => {
-    const root = pathJoin(process.env.TMPDIR || '/tmp', 'root')
+describe("utils", () => {
+  it("remove empty directories", async () => {
+    const root = pathJoin(process.env.TMPDIR || "/tmp", "root");
 
-    const pAA = pathJoin(root, 'a', 'a')
-    fs.mkdirpSync(pAA)
-    const pBA = pathJoin(root, 'b', 'a')
-    fs.mkdirpSync(pBA)
-    const pB = pathJoin(root, 'b')
-    fs.writeFileSync(pathJoin(pB, 'text.txt'), 'hello')
-    const pCA = pathJoin(root, 'c', 'a')
-    fs.mkdirpSync(pCA)
-    fs.writeFileSync(pathJoin(pCA, 'text.txt'), 'hello')
-    const pD = pathJoin(root, 'd')
-    fs.mkdirpSync(pD)
+    const pAA = pathJoin(root, "a", "a");
+    fs.mkdirpSync(pAA);
+    const pBA = pathJoin(root, "b", "a");
+    fs.mkdirpSync(pBA);
+    const pB = pathJoin(root, "b");
+    fs.writeFileSync(pathJoin(pB, "text.txt"), "hello");
+    const pCA = pathJoin(root, "c", "a");
+    fs.mkdirpSync(pCA);
+    fs.writeFileSync(pathJoin(pCA, "text.txt"), "hello");
+    const pD = pathJoin(root, "d");
+    fs.mkdirpSync(pD);
 
-    await purgeEmptyPath(root)
+    await purgeEmptyPath(root);
 
-    expect(fs.existsSync(pAA)).toBeFalse()
-    expect(fs.existsSync(pBA)).toBeFalse()
-    expect(fs.existsSync(pB)).toBeTrue()
-    expect(fs.existsSync(pCA)).toBeTrue()
-    expect(fs.existsSync(pD)).toBeFalse()
-  })
+    expect(fs.existsSync(pAA)).toBeFalse();
+    expect(fs.existsSync(pBA)).toBeFalse();
+    expect(fs.existsSync(pB)).toBeTrue();
+    expect(fs.existsSync(pCA)).toBeTrue();
+    expect(fs.existsSync(pD)).toBeFalse();
+  });
 
-  it('no error on non-exist directory', async () => {
-    await purgeEmptyPath('/tmp/not-hello-123')
-  })
-})
+  it("no error on non-exist directory", async () => {
+    await purgeEmptyPath("/tmp/not-hello-123");
+  });
+});
