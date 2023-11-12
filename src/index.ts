@@ -81,7 +81,7 @@ class Cache {
     return !rv ? "miss" : rv.ttl > now ? "hit" : "stale";
   }
 
-  async del(key: string): void {
+  async del(key: string): Promise<void> {
     const rv = this.db
       .prepare<{ filename: string }, string>(
         "SELECT filename FROM cache WHERE key = ?"
