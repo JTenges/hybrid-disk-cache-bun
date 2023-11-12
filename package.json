@@ -1,14 +1,13 @@
 {
-  "name": "@next-boost/hybrid-disk-cache",
-  "version": "0.3.0",
+  "name": "@next-boost/hybrid-disk-cache-bun",
+  "version": "0.4.0",
   "description": "A hybrid disk cache utilize both the database and the file system.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "rm -rf dist && yarn build",
+    "prepublishOnly": "rm -rf dist && bun build",
     "lint": "eslint src/*.ts test/*.ts",
-    "test": "NODE_ENV=test mocha --require ts-node/register test/**/*.test.ts",
-    "test-cov": "NODE_ENV=test nyc mocha test/*.test.ts"
+    "test-cov": "bun test --coverage"
   },
   "files": [
     "dist",
@@ -28,14 +27,10 @@
     "fs-extra": "^10.0.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.12",
     "@types/fs-extra": "^9.0.1",
-    "@types/mocha": "^9.0.0",
-    "@types/node": "^16.7.10",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",
     "bun-types": "^1.0.11",
-    "chai": "^4.2.0",
     "eslint": "^7.9.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -44,24 +39,6 @@
     "prettier": "^2.1.2",
     "ts-node": "^10.2.1",
     "typescript": "^4.0.3"
-  },
-  "nyc": {
-    "include": [
-      "src/**/*.ts"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ],
-    "reporter": [
-      "text",
-      "text-summary",
-      "lcovonly",
-      "html"
-    ],
-    "sourceMap": true
   },
   "keywords": [
     "disk-cache",
