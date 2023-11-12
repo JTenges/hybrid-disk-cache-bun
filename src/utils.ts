@@ -2,17 +2,17 @@ import { createHash } from "crypto";
 import fs from "fs-extra";
 import path from "path";
 
-export function write(dir: string, filename: string, data: Buffer) {
+export function write(dir: string, filename: string, data: Buffer): void {
   const file = path.join(dir, filename);
   fs.mkdirpSync(file.slice(0, file.lastIndexOf("/")));
-  return fs.writeFileSync(file, data);
+  fs.writeFileSync(file, data);
 }
 
-export function read(dir: string, filename: string) {
+export function read(dir: string, filename: string): Buffer {
   return fs.readFileSync(path.join(dir, filename));
 }
 
-export function md5name(buf: string) {
+export function md5name(buf: string): string {
   const md5 = createHash("md5");
   const str = md5.update(buf).digest("hex");
   const p0 = str.slice(0, 2);

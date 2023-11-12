@@ -2,7 +2,7 @@ import { describe, it, expect } from "bun:test";
 import fs from "fs";
 import Cache from "../src";
 
-export const sleep = async (t: number) => {
+export const sleep = async (t: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, t));
 };
 

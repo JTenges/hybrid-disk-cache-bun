@@ -17,7 +17,7 @@ export class Adapter {
     this.cache = new Cache(conf);
   }
 
-  async init() {
+  async init(): Promise<Cache> {
     console.log(`  Cache located at ${this.cache.path}`);
     // purge timer
     this.initPurgeTimer();
@@ -27,11 +27,11 @@ export class Adapter {
   /**
    * Stop the purge timer
    */
-  async shutdown() {
+  async shutdown(): Promise<void> {
     if (this.interval) clearInterval(this.interval);
   }
 
-  private initPurgeTimer() {
+  private initPurgeTimer(): void {
     if (this.interval) return;
     const tbd = Math.min(this.cache.tbd, 3600);
     console.log("  Cache manager inited, will start to purge in %ds", tbd);

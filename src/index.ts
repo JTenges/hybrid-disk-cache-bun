@@ -39,7 +39,7 @@ class Cache {
     this.db = db;
   }
 
-  async set(key: string, value: Buffer, ttl?: number) {
+  async set(key: string, value: Buffer, ttl?: number): void {
     if (!ttl) ttl = this.ttl;
 
     const insert = this.db.prepare(
@@ -81,23 +81,25 @@ class Cache {
     return !rv ? "miss" : rv.ttl > now ? "hit" : "stale";
   }
 
-  async del(key: string) {
+  async del(key: string): void {
     const rv = this.db
       .prepare<{ filename: string }, string>(
         "SELECT filename FROM cache WHERE key = ?"
       )
       .get(key);
     this.db.prepare("DELETE FROM cache WHERE key = ?").run(key);
-    this._delFile(rv?.filename!);
+    if (rv?.filename) {
+      this._delFile(rv?.filename);
+    }
   }
 
-  _delFile(filename: string) {
+  _delFile(filename: string): void {
     if (!filename) return;
     const f = pathJoin(this.path, filename);
     fs.unlink(f).catch();
   }
 
-  async purge() {
+  async purge(): Promise<number> {
     // ttl + tbd < now => ttl < now - tbd
     const now = new Date().getTime() / 1000 - this.tbd;
     const rows = this.db
